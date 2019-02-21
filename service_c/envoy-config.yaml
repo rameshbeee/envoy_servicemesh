@@ -31,7 +31,7 @@ static_resources:
                       routes:
                         -
                           match:
-                            prefix: "/"
+                            prefix: "/service_c"
                           route:
                             cluster: "service_c"
                 http_filters:

@@ -10,9 +10,9 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Calling Service B")
+	fmt.Fprintf(w, "Calling Service B\n")
 
-	req, err := http.NewRequest("GET", "http://service_a_envoy:8788/", nil)
+	req, err := http.NewRequest("GET", "http://service_a_envoy:8786/service_b", nil)
 	if err != nil {
 		fmt.Printf("%s", err)
 	}
@@ -38,9 +38,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("%s", err)
 	}
 	fmt.Fprintf(w, string(body))
-	fmt.Fprintf(w, "Hello from service A")
+	fmt.Fprintf(w, "Hello from service A\n")
 
-	req, err = http.NewRequest("GET", "http://service_a_envoy:8791/", nil)
+	req, err = http.NewRequest("GET", "http://service_a_envoy:8786/service_c", nil)
 	if err != nil {
 		fmt.Printf("%s", err)
 	}
@@ -70,6 +70,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/service_a", handler)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }

@@ -9,10 +9,10 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Hello from service C")
+	fmt.Fprintf(w, "Hello from service C\n")
 }
 
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/service_c", handler)
 	log.Fatal(http.ListenAndServe(":8083", nil))
 }
